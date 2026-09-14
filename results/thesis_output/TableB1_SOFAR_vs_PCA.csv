@@ -1,0 +1,5 @@
+model,ann_ret_net_pct,sharpe_net,tstat_nw_net,maxdd_net_pct
+XGBoost-Hybrid,13.607,1.425,5.541,-8.765
+XGBoost-SOFAR,7.587,1.044,3.679,-7.23
+XGBoost-PCA-S,5.852,0.88,3.285,-12.688
+XGBoost-PCA-H,9.996,1.019,3.608,-12.396

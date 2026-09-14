@@ -1,0 +1,11 @@
+特徵集,演算法,model_code,R2_OOS_pct
+Market-only,Elastic Net,pred_en_S,0.53
+Market-only,Random Forest,pred_rf_S,-1.009
+Market-only,XGBoost,pred_xgb_S,0.275
+SOFAR-only,Elastic Net,pred_en_M,0.603
+SOFAR-only,Random Forest,pred_rf_M,-1.693
+SOFAR-only,XGBoost,pred_xgb_M,0.131
+Hybrid,Elastic Net,pred_en_H,0.586
+Hybrid,Random Forest,pred_rf_H,-0.36
+Hybrid,XGBoost,pred_xgb_H,0.223
+OLS-3,OLS,pred_ols3,0.547
