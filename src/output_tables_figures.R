@@ -35,7 +35,7 @@ invisible(lapply(pkgs, library, character.only = TRUE))
 # ============================================================
 
 # 所有 run 的根目錄（與 pipeline_main.R 一致）
-BASE_OUT_DIR <- "C:/我的/政大/碩二下/論文輸出資料與模型/pipeline_runs"
+BASE_OUT_DIR <- "outputs/pipeline_runs"
 
 # 找出所有 run_* 資料夾，取最新（依名稱排序，時間戳記格式保證正確）
 run_dirs <- list.dirs(BASE_OUT_DIR, recursive = FALSE, full.names = TRUE)
