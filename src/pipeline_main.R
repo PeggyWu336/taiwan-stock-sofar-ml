@@ -336,7 +336,7 @@ dt_market <- na.omit(dt_market)
 
 cor_mat <- cor(dt_market, use = "complete.obs")
 colnames(cor_mat) <- rownames(cor_mat) <- c(
-  "Mom1M", "Mom6M", "Mom12M", "波動度", "流動性", "規模", "帳面市值比"
+  "Mom1M", "Mom6M", "Mom12M", "Volatility", "Liquidity", "Size", "BM"
 )
 
 cat("\n【表5】市場面特徵相關係數矩陣：\n")
