@@ -11,8 +11,8 @@ decile long-short portfolio, net of transaction costs (0.6% round trip).
 
 | Metric | Value | What it means |
 |---|---|---|
-| Sharpe Ratio (XGBoost-Hybrid) | **1.42** | Risk-adjusted return: how much return per unit of risk taken |
-| Newey-West t-stat | **5.54** | Statistical significance: is this skill or luck? (>2 is considered significant) |
+| Sharpe Ratio (XGBoost-Hybrid) | **1.425** | Risk-adjusted return: how much return per unit of risk taken |
+| Newey-West t-stat | **5.541** | Statistical significance: is this skill or luck? (>2 is considered significant) |
 | Spanning Test alpha | 0.00329 (t = 3.498, p < 1%) | About 0.3% excess return per month that cannot be replicated by the Market-only and SOFAR-only strategies combined |
 | Feature importance (Gain) | Market 44.6% / SOFAR 55.4% | Both signal types contribute roughly equally, so SOFAR factors are not decorative |
 | Consistency | 9 of 10 years with positive Sharpe | The only negative year is 2025 (tariff shock) |
@@ -112,9 +112,6 @@ See [data/README.md](data/README.md) for the full input format.
 
 ## How to Run
 
-> The raw data are not included. See [data/README.md](data/README.md)
-> for the required input files and their format.
-
 ### 1. Install R packages
 
 ```r
@@ -137,7 +134,7 @@ directory to the repo root).
 | 1 | `src/pipeline_main.R` | Universe screening, feature engineering, yearly SOFAR factor extraction, training of all 10 models with an expanding window, and long-short backtest. Results go to `outputs/pipeline_runs/` |
 | 2 | `src/output_tables_figures.R` | Builds the thesis tables (Table 4-11, A1, B1) and Figures 1-2 into a `thesis_output/` folder under `outputs/` |
 | 3 | `src/backtest_vs_0050.R` | Compares XGBoost-Hybrid with the 0050 ETF over the same out-of-sample period |
-| 4 | `src/three_year_annualized_return.R` | Computes annualized returns over selected 3-year windows, reading the latest run automatically |
+| 4 | `src/three_year_annualized_return.R` | XGBoost-Hybrid returns for three selected years (2020, 2021, 2025), including the monthly long-short net returns in Appendix D.1. Reads the latest run automatically |
 
 ### Notes
 
@@ -146,7 +143,7 @@ directory to the repo root).
 - `outputs/` is ignored by git. To update the published results, copy the
   files from the generated `thesis_output/` folder into `results/thesis_output/`.
 
-  ## Limitations
+## Limitations
 
 - **Nonlinear models broke down in 2025.** All three XGBoost models had a
   negative Sharpe ratio in 2025 (XGBoost-Hybrid: -0.411), while the linear
