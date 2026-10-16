@@ -1,4 +1,4 @@
-model,ann_ret_gross_pct,sharpe_gross,ann_ret_net_pct,sharpe_net,tstat_nw_net,sig,maxdd_net_pct,avg_turnover
+﻿model,ann_ret_gross_pct,sharpe_gross,ann_ret_net_pct,sharpe_net,tstat_nw_net,sig,maxdd_net_pct,avg_turnover
 pred_en_S,6.428,0.725,6.394,0.719,2.864,***,-14.4,0.4736
 pred_rf_S,3.787,0.587,3.961,0.611,2.155,**,-10.4,1.0518
 pred_xgb_S,7.669,1.055,7.587,1.044,3.679,***,-7.2,0.8474
