@@ -1,3 +1,7 @@
+# Benchmark: passive 0050 ETF performance over the same out-of-sample period.
+# Input: data/0050.csv (daily; columns: year = date as Y/m/d, close = closing price).
+# Not included in this repo; obtain daily 0050 prices from TEJ or any market data source.
+
 library(data.table)
 library(sandwich)
 library(lmtest)
