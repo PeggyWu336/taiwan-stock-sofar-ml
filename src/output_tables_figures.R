@@ -227,13 +227,13 @@ r2_full <- sapply(pred_cols_main, function(pc) {
   round((1 - ss_res / ss_tot) * 100, 3)
 })
 
-# 整理為論文格式（行：特徵集，列：演算法）
+# 整理為論文格式（行：Feature_set，列：Algorithm）
 table6 <- data.table(
-  特徵集     = c("Market-only", "Market-only", "Market-only",
+  Feature_set     = c("Market-only", "Market-only", "Market-only",
                   "SOFAR-only",  "SOFAR-only",  "SOFAR-only",
                   "Hybrid",      "Hybrid",       "Hybrid",
                   "OLS-3"),
-  演算法     = c("Elastic Net", "Random Forest", "XGBoost",
+  Algorithm     = c("Elastic Net", "Random Forest", "XGBoost",
                   "Elastic Net", "Random Forest", "XGBoost",
                   "Elastic Net", "Random Forest", "XGBoost",
                   "OLS"),
@@ -330,7 +330,7 @@ byyear_file <- find_file(OUT_DIR_REFIT, "predsort_summary_BYYEAR_.*\\.csv")
 if (!is.null(byyear_file)) {
   byyear_all <- fread(byyear_file)
 
-  # 主要模型：XGB-H、XGB-S、XGB-M、OLS-3、純SOFAR
+  # 主要模型：XGB-H、XGB-S、XGB-M、OLS-3、Pure-SOFAR
   main_models_9 <- c("pred_xgb_H", "pred_xgb_S", "pred_xgb_M",
                       "pred_ols3", "pred_sofar_comp_main")
   label_map9 <- c(
@@ -338,7 +338,7 @@ if (!is.null(byyear_file)) {
     pred_xgb_S          = "XGB-S",
     pred_xgb_M          = "XGB-M",
     pred_ols3           = "OLS-3",
-    pred_sofar_comp_main = "純SOFAR"
+    pred_sofar_comp_main = "Pure-SOFAR"
   )
 
   table9_long <- byyear_all[model %in% main_models_9,
@@ -348,13 +348,13 @@ if (!is.null(byyear_file)) {
   table9_wide <- dcast(table9_long, year_refit ~ model_label,
                         value.var = "sharpe")
 
-  # 加入正值年數統計列
-  pos_row <- data.table(year_refit = "正值年數",
+  # 加入Positive-years統計列
+  pos_row <- data.table(year_refit = "Positive-years",
                          `XGB-H`   = sum(table9_wide$`XGB-H`   > 0, na.rm = TRUE),
                          `XGB-S`   = sum(table9_wide$`XGB-S`   > 0, na.rm = TRUE),
                          `XGB-M`   = sum(table9_wide$`XGB-M`   > 0, na.rm = TRUE),
                          `OLS-3`   = sum(table9_wide$`OLS-3`   > 0, na.rm = TRUE),
-                         `純SOFAR` = sum(table9_wide$`純SOFAR` > 0, na.rm = TRUE))
+                         `Pure-SOFAR` = sum(table9_wide$`Pure-SOFAR` > 0, na.rm = TRUE))
   # 轉為字元型別再合併
   table9_wide[, year_refit := as.character(year_refit)]
   table9_out <- rbind(table9_wide, pos_row, fill = TRUE)
@@ -416,7 +416,7 @@ if (!is.null(imp_file)) {
     table11[, rank := .I]
     # 區分特徵類型
     table11[, feature_type := ifelse(grepl("^sofar_f|^z_sofar",
-                                           Feature), "SOFAR因子", "市場面")]
+                                           Feature), "SOFAR factor", "Market")]
   }
   fwrite(table11, file.path(OUT_DIR_THESIS, "Table11_xgb_importance.csv"))
   cat("表11 已輸出。\n"); print(table11)
