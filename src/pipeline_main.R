@@ -50,10 +50,10 @@ invisible(lapply(pkgs, library, character.only = TRUE))
 # ============================================================
 
 # 原始資料路徑（monthly_panel_final.csv）
-IN_PATH <- "C:/我的/政大/碩二下/論文輸出資料與模型/monthly_panel_final.csv"
+IN_PATH <- "data/monthly_panel_final.csv"
 
 # 所有 run 的根目錄（資料夾A）
-BASE_OUT_DIR <- "C:/我的/政大/碩二下/論文輸出資料與模型/pipeline_runs"
+BASE_OUT_DIR <- "outputs/pipeline_runs"
 
 # 本次 run 的時間戳記
 RUN_TS <- format(Sys.time(), "%Y%m%d_%H%M%S")

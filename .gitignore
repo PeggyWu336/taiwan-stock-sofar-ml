@@ -51,3 +51,6 @@ rsconnect/
 results/annual_refit/
 results/pca_comparison/
 results/log_*.txt
+
+data/*.csv
+outputs/

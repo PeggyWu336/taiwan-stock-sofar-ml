@@ -2,7 +2,7 @@ library(data.table)
 library(sandwich)
 library(lmtest)
 
-dt_0050 <- fread("C:/我的/政大/碩二下/論文輸出資料與模型/0050.csv", 
+dt_0050 <- fread("data/0050.csv", 
                  encoding = "UTF-8")
 
 # 處理日期
