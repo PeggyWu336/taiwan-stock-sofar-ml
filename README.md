@@ -79,26 +79,19 @@ Design choices that guard against look-ahead bias and overfitting:
 - **Transaction costs**: 0.6% round trip charged on portfolio turnover.
 - **Fixed hyperparameters and seed (42)**: set in advance, not tuned on out-of-sample results.
 
-## Repository Structure
+## Repository Contents
 
-```text
-taiwan-stock-sofar-ml/
-|-- src/                                R code
-|   |-- pipeline_main.R                 Full pipeline: universe, imputation, SOFAR, ML models, portfolios
-|   |-- output_tables_figures.R         Builds thesis tables and figures from pipeline output
-|   |-- backtest_vs_0050.R              Compares the strategy with the 0050 ETF benchmark
-|   `-- three_year_annualized_return.R  Monthly long-short returns for 2020, 2021, 2025 (Appendix D.1)
-|-- results/
-|   `-- thesis_output/                  Thesis tables (CSV) and figures (PNG)
-|-- data/                               Data documentation only (raw TEJ data not included)
-`-- LICENSE
-```
+| Folder | Content |
+|---|---|
+| `src/` | R code: full pipeline, thesis tables and figures, comparison with 0050, monthly returns for Appendix D.1 |
+| `results/thesis_output/` | Thesis tables (CSV, Tables 4-11, A.1, B.1) and figures (PNG, Figures 1-2) |
+| `data/` | Data documentation only (raw TEJ data is licensed and not included) |
 
 Where to look first:
 
 | File | Content |
 |---|---|
+| `src/pipeline_main.R` | End-to-end pipeline: universe filter, imputation, SOFAR, ML models, portfolios |
 | `results/thesis_output/Table7_portfolio_perf.csv` | Portfolio performance of all 10 models |
 | `results/thesis_output/Table8_spanning_test.csv` | Spanning test (information complementarity) |
-| `results/thesis_output/Table11_xgb_importance.csv` | XGBoost-Hybrid feature importance |
 | `results/thesis_output/Figure2_cumret_wealth.png` | Cumulative wealth of the main models |
