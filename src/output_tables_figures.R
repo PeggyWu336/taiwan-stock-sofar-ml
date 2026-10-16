@@ -524,7 +524,7 @@ if (!is.null(univ_file)) {
     scale_y_continuous(limits = c(600, 1200),
                        breaks = seq(600, 1200, 100)) +
     scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
-    labs(x = "年份", y = "股票數（檔）") +
+    labs(x = "Year", y = "Number of stocks") +
     theme_classic() +
     theme(axis.title = element_text(size = 12),
           axis.text  = element_text(size = 11))
@@ -555,7 +555,7 @@ model_specs <- list(
   list(code  = "pred_ols3",
        label = "OLS-3"),
   list(code  = "pred_sofar_comp_main",
-       label = "純SOFAR因子排序")
+       label = "Pure SOFAR ranking")
 )
 
 dt_list2 <- lapply(model_specs, function(ms) {
@@ -569,7 +569,7 @@ cum_dt <- rbindlist(Filter(Negate(is.null), dt_list2))
 
 # 強制 factor 順序（控制圖例排列）
 model_levels <- c("XGBoost-Hybrid", "XGBoost-SOFAR", "XGBoost-Market",
-                   "OLS-3", "純SOFAR因子排序")
+                   "OLS-3", "Pure SOFAR ranking")
 cum_dt[, model := factor(model, levels = model_levels)]
 
 # 顏色、線條樣式、線條粗細設定
@@ -578,21 +578,21 @@ colors <- c(
   "XGBoost-SOFAR"   = "#E74C3C",
   "XGBoost-Market"  = "#3498DB",
   "OLS-3"           = "#27AE60",
-  "純SOFAR因子排序" = "#F39C12"
+  "Pure SOFAR ranking" = "#F39C12"
 )
 linetypes <- c(
   "XGBoost-Hybrid"  = "solid",
   "XGBoost-SOFAR"   = "dashed",
   "XGBoost-Market"  = "dotdash",
   "OLS-3"           = "dotted",
-  "純SOFAR因子排序" = "longdash"
+  "Pure SOFAR ranking" = "longdash"
 )
 sizes <- c(
   "XGBoost-Hybrid"  = 1.2,   # 最佳模型較粗
   "XGBoost-SOFAR"   = 0.7,
   "XGBoost-Market"  = 0.7,
   "OLS-3"           = 0.7,
-  "純SOFAR因子排序" = 0.7
+  "Pure SOFAR ranking" = 0.7
 )
 
 p2 <- ggplot(cum_dt, aes(x = ym, y = cum_ret,
@@ -609,13 +609,13 @@ p2 <- ggplot(cum_dt, aes(x = ym, y = cum_ret,
              linetype = "dashed", color = "grey60", linewidth = 0.5) +
   # 事件標記文字
   annotate("text", x = as.Date("2020-03-01"), y = 0.5,
-           label = "2020/3\n新冠疫情\n全球股災",
+           label = "Mar 2020\nCOVID\ncrash",
            size = 4.2, color = "grey40", lineheight = 0.9, hjust = 0.5) +
   annotate("text", x = as.Date("2021-05-01"), y = 0.5,
-           label = "2021/5\n台灣本土\n疫情爆發",
+           label = "May 2021\nTaiwan\noutbreak",
            size = 4.2, color = "grey40", lineheight = 0.9, hjust = 0.5) +
   annotate("text", x = as.Date("2025-04-01"), y = 0.5,
-           label = "2025/4\n川普關稅\n衝擊",
+           label = "Apr 2025\nUS tariff\nshock",
            size = 4.2, color = "grey40", lineheight = 0.9, hjust = 1.1) +
   scale_color_manual(values = colors,    breaks = model_levels) +
   scale_linetype_manual(values = linetypes, breaks = model_levels) +
@@ -623,7 +623,7 @@ p2 <- ggplot(cum_dt, aes(x = ym, y = cum_ret,
   scale_y_continuous(limits = c(0.4, NA)) +
   scale_x_date(date_breaks = "2 years", date_labels = "%Y",
                limits = c(as.Date("2016-01-01"), as.Date("2026-03-01"))) +
-  labs(x = "年份", y = "累積財富（初始=1）",
+  labs(x = "Year", y = "Cumulative wealth (start = 1)",
        color = NULL, linetype = NULL, linewidth = NULL) +
   theme_classic() +
   theme(
