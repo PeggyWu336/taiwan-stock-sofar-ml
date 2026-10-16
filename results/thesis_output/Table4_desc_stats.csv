@@ -1,4 +1,4 @@
-variable,n,mean,median,sd,min,max,na_rate
+﻿variable,n,mean,median,sd,min,max,na_rate
 A_roa,215619,1.645,1.41,2.341,-6.16,10.24,7.7%
 A_roe,215617,2.845,2.55,4.168,-11.1,18.1,7.7%
 A_gpm,210326,26.025,22.92,18.247,-14.65,89.605,10%
