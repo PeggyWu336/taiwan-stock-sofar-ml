@@ -123,7 +123,7 @@ directory to the repo root).
 | 1 | `src/pipeline_main.R` | Universe screening, feature engineering, yearly SOFAR factor extraction, training of all 10 models with an expanding window, and long-short backtest. Results go to `outputs/pipeline_runs/` |
 | 2 | `src/output_tables_figures.R` | Builds the thesis tables (Table 4-11, A1, B1) and Figures 1-2 into a `thesis_output/` folder under `outputs/` |
 | 3 | `src/backtest_vs_0050.R` | Compares XGBoost-Hybrid with the 0050 ETF over the same out-of-sample period |
-| 4 | `src/three_year_annualized_return.R` | Computes rolling 3-year annualized returns, reading the latest run automatically |
+| 4 | `src/three_year_annualized_return.R` | Computes annualized returns over selected 3-year windows, reading the latest run automatically |
 
 ### Notes
 
