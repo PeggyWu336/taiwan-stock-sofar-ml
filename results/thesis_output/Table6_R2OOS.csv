@@ -1,4 +1,4 @@
-﻿特徵集,演算法,model_code,R2_OOS_pct
+﻿Feature-set,Algorithm,model_code,R2_OOS_pct
 SOFAR-only,Elastic Net,pred_en_S,0.53
 SOFAR-only,Random Forest,pred_rf_S,-1.009
 SOFAR-only,XGBoost,pred_xgb_S,0.275
