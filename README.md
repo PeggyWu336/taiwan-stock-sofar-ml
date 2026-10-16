@@ -96,6 +96,20 @@ Where to look first:
 | `results/thesis_output/Table8_spanning_test.csv` | Spanning test (information complementarity) |
 | `results/thesis_output/Figure2_cumret_wealth.png` | Cumulative wealth of the main models |
 
+## Data
+
+- **Source:** Taiwan Economic Journal (TEJ), 2005-01 to 2025-12, monthly
+- **Sample:** Taiwan listed and OTC common stocks (TDRs excluded, all industries kept)
+- **Universe:** re-screened monthly; market cap and trading value must both be
+  in the top 70%, with at least 30 stocks per month (668 to 1,174 stocks per month)
+- **Fundamental inputs:** 25 quarterly financial statement variables in 7 groups,
+  lagged to official reporting deadlines to avoid look-ahead bias
+- **Market inputs:** Mom1M, Mom6M and Mom12M (skip-1), 12-month return volatility,
+  and liquidity (log average trading value)
+
+TEJ is a licensed database, so the raw data are not included.
+See [data/README.md](data/README.md) for the full input format.
+
 ## How to Run
 
 > The raw data are not included. See [data/README.md](data/README.md)
@@ -131,3 +145,28 @@ directory to the repo root).
 - Random seeds are fixed (`set.seed(42)`), so results are reproducible.
 - `outputs/` is ignored by git. To update the published results, copy the
   files from the generated `thesis_output/` folder into `results/thesis_output/`.
+
+  ## Limitations
+
+- **Nonlinear models broke down in 2025.** All three XGBoost models had a
+  negative Sharpe ratio in 2025 (XGBoost-Hybrid: -0.411), while the linear
+  OLS-3 (0.662) and the pure SOFAR factor ranking (1.266) stayed positive.
+  Losses were spread across the year after the April 2025 tariff shock,
+  suggesting the patterns learned from history stopped working under a
+  structural break. A regime-aware switch to simpler models is left for
+  future work.
+- **SOFAR factors are hard to interpret over time.** Factors are re-estimated
+  every year, so a factor with the same number can load on different
+  variables in different years. The analysis therefore focuses on the total
+  contribution of SOFAR factors, not on the meaning of each one.
+- **Factor count hits the upper bound.** The ED method selected the maximum
+  of 12 factors in every year, likely because cross-sectional Z-scoring
+  compresses eigenvalue gaps. Choosing the count by out-of-sample error or
+  cross-validation would be a better alternative.
+- **Simplified trading costs.** Costs are a flat 0.6% round trip. Borrowing
+  fees, short-sale constraints and market impact are not modeled, so the
+  long-short returns are likely an upper bound of what is achievable.
+- **Not a like-for-like comparison with 0050.** 0050 had a higher raw annual
+  return (18.02% vs 13.61%). The strategy wins on risk-adjusted terms
+  (Sharpe 1.425 vs 1.051, MDD -8.77% vs -24.29%), but it is a dollar-neutral
+  long-short portfolio, while 0050 is a long-only index fund.
