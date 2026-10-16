@@ -30,6 +30,12 @@ performance and far smaller drawdowns. Note that a long-short portfolio and a
 long-only ETF are different instruments; 0050 figures are before costs
 (negligible for a passive ETF).
 
+![Cumulative wealth of the main models, 2016-2025](results/thesis_output/Figure2_cumret_wealth.png)
+
+*Cumulative net wealth of 1 unit invested in each long-short strategy (Figure 2 of the thesis).
+The solid line is XGBoost-Hybrid. Dashed vertical lines mark Mar 2020 (COVID crash),
+May 2021 (Taiwan COVID outbreak) and Apr 2025 (US tariff shock).*
+
 See `results/thesis_output/` for full tables and figures.
 
 ## The Idea
