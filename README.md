@@ -95,3 +95,39 @@ Where to look first:
 | `results/thesis_output/Table7_portfolio_perf.csv` | Portfolio performance of all 10 models |
 | `results/thesis_output/Table8_spanning_test.csv` | Spanning test (information complementarity) |
 | `results/thesis_output/Figure2_cumret_wealth.png` | Cumulative wealth of the main models |
+
+## How to Run
+
+> The raw data are not included. See [data/README.md](data/README.md)
+> for the required input files and their format.
+
+### 1. Install R packages
+
+```r
+install.packages(c("data.table", "lubridate", "zoo", "rrpack", "glmnet",
+                   "ranger", "xgboost", "sandwich", "lmtest", "ggplot2"))
+```
+
+### 2. Prepare the data
+
+Put `monthly_panel_final.csv` and `0050.csv` in the `data/` folder.
+
+### 3. Run the scripts in order
+
+All scripts use relative paths, so run them **from the repository root**
+(for example `Rscript src/pipeline_main.R`, or set the RStudio working
+directory to the repo root).
+
+| Step | Script | What it does |
+|---|---|---|
+| 1 | `src/pipeline_main.R` | Universe screening, feature engineering, yearly SOFAR factor extraction, training of all 10 models with an expanding window, and long-short backtest. Results go to `outputs/pipeline_runs/` |
+| 2 | `src/output_tables_figures.R` | Builds the thesis tables (Table 4-11, A1, B1) and Figures 1-2 into a `thesis_output/` folder under `outputs/` |
+| 3 | `src/backtest_vs_0050.R` | Compares XGBoost-Hybrid with the 0050 ETF over the same out-of-sample period |
+| 4 | `src/three_year_annualized_return.R` | Computes rolling 3-year annualized returns, reading the latest run automatically |
+
+### Notes
+
+- The full pipeline takes about **5-6 hours** on a typical laptop.
+- Random seeds are fixed (`set.seed(42)`), so results are reproducible.
+- `outputs/` is ignored by git. To update the published results, copy the
+  files from the generated `thesis_output/` folder into `results/thesis_output/`.
